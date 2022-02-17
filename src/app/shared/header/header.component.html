@@ -1,0 +1,28 @@
+<div class="bg-primary h-25">
+    <div class="container h-100">
+        <div class="d-flex justify-content-center pt-5">
+            <h1 class="text-white fs-1">Busqueda De Empleados</h1>
+        </div>
+        <div class="mb-3 h-100">
+            <div class="container h-100">
+                <div class="row">
+                    <div class="col-12 col-md-5">
+                        <label  for="campo" class="form-label text-white">Busque Por Nombre o CI:</label>
+                        <input type="text" class="form-control" id="campo" [(ngModel)]="campo" required name="campo">   
+                    </div>
+                    <div class="col-12 col-md-2">
+                        <app-provincia [provincias]="provincias" (refrezarCantones)="refreshCanton($event)"></app-provincia>
+                    </div>
+                    <div class="col-12 col-md-2">
+                        <app-canton [cantones]="cantones" (sendSelection)="setIdCanton($event)"></app-canton>
+                    </div>
+                    <div class="col-12 col-md-2 pt-md-4">
+                        <div class="d-flex align-items-center">
+                            <button class="btn btn-success w-100 h-100" (click)="relizarBusqueda()">Buscar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

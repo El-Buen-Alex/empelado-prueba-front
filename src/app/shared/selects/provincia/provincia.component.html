@@ -1,0 +1,9 @@
+<div class="">
+    <label  for="campo" class="form-label text-white">Filtrar Por Provincia</label>
+
+     <select class="form-select" name="provincia" id="provincia" (change)="refreshCanton()" [(ngModel)]="provincia_id"
+        required name="provincia">
+        <option value="0" selected disabled>Seleccione una Provincia</option>
+        <option *ngFor="let provincia of provincias" value="{{provincia.id}}">{{provincia.name}}</option>
+      </select>
+</div>

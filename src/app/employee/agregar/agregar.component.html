@@ -1,0 +1,32 @@
+<div class="container">
+  <form  #form="ngForm" (ngSubmit)="form.form.valid && onGuardarEmpleado()">
+    <div class="w-100 mb-5">
+      <h1 class="pb-0 mb-0">AGREGANDO EMPLEADO</h1>
+      <div class="form-text">We'll never share your information with anyone else.</div>
+    </div>
+    <div class="mb-3">
+      <label for="name" class="form-label">Nombre:</label>
+      <input type="text" class="form-control" id="name" [(ngModel)]="empleado.name" required name="name">
+    </div>
+    <div class="mb-3">
+      <label for="cedula" class="form-label">Cedula</label>
+      <input type="number" class="form-control" id="cedula" [(ngModel)]="empleado.cedula" required name="cedula">
+    </div>
+    <div class="mb-3">
+      <label for="provincia" class="form-label">Provincia</label>
+      <select class="form-select" name="provincia" id="provincia" (change)="refreshCanton()" [(ngModel)]="provincia_id"
+        required name="provincia">
+        <option value="0" selected disabled>Seleccione una Provincia</option>
+        <option *ngFor="let provincia of provincias" value="{{provincia.id}}">{{provincia.name}}</option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="canton" class="form-label">Canton</label>
+      <select class="form-select" name="canton" id="canton" [(ngModel)]="empleado.canton_id" requires name="canton">
+        <option value="0" selected disabled>Seleccione un Canton</option>
+        <option *ngFor="let canton of cantones" value="{{canton.id}}">{{canton.name}}</option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>

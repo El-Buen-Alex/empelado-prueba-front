@@ -1,0 +1,5 @@
+<label for="canton" class="form-label text-white">Canton</label>
+<select class="form-select" name="canton" id="canton" [(ngModel)]="canton_id" (change)="sendIdCanton()" requires name="canton">
+  <option value="0" selected disabled>Seleccione un Canton</option>
+  <option *ngFor="let canton of cantones" value="{{canton.id}}">{{canton.name}}</option>
+</select>

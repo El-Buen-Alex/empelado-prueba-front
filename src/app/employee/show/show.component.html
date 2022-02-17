@@ -1,0 +1,32 @@
+<div class="w-100 h-100">
+    <app-header (buscar)="buscarPorNombre($event)">
+        
+    </app-header>
+<table class="table table-striped h-auto">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Cedula</th>
+        <th scope="col">Canton</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let Employee of EmployeesList; let i=index ">
+        <th scope="row">{{i+1}}</th>
+        <td>{{Employee.name}}</td>
+        <td>{{Employee.cedula}}</td>
+        <td>{{Employee.canton_id}}</td>
+        <td >
+            <div class="d-flex justify-content-around w-100">
+                <a class="btn btn-primary " [routerLink]="['empleado/agregar']">show</a>
+                <button class="btn btn-warning" [routerLink]="['empleado/edit/', Employee.id]">Edit</button>
+                <button class="btn btn-danger" (click)="darDeBajaEmpleado(Employee, i)">Delete</button>
+            </div>
+        </td>
+      </tr>
+
+    </tbody>
+  </table>
+</div>
