@@ -32,28 +32,49 @@ export class ShowComponent implements OnInit {
     if(campos.campo.trim()===''){
       if(campos.canton_id!==0){
         console.log("busqeda por cnaton y prov")
+        this.PersonaService.getEmployeeByCanton_id(campos).subscribe(
+          (empleados:Employee[])=>{
+            this.EmployeesList=Object.keys(empleados).map((key: any) => empleados[key])
+         }
+       );
       }else{
         console.log("busqeda por  prov")
-        
+        this.PersonaService.getEmployeeByProvincia_id(campos).subscribe(
+          (empleados:Employee[])=>{
+            this.EmployeesList=Object.keys(empleados).map((key: any) => empleados[key])
+         }
+       );
       }
     }else if(campos.campo.trim()!==''){
       
       if(campos.canton_id!==0){
         console.log("busqeuda triple")
+        this.PersonaService.getEmployeeByNameOrCiAndCanton(campos).subscribe(
+          (empleados:Employee[])=>{
+            
+            this.EmployeesList=Object.keys(empleados).map((key: any) => empleados[key])
+            console.log(this.EmployeesList)
+         }
+       );
       }else{
         if(campos.provincia_id!==0){
-          console.log("busqueda por campo  y prov")
+          this.PersonaService.getEmployeeByNameOrCiAndProvincia(campos).subscribe(
+            (empleados:Employee[])=>{
+              this.EmployeesList=Object.keys(empleados).map((key: any) => empleados[key])
+           }
+         );
+          
         }else{
-          console.log("busqueda solo por cmapo")
+          this.PersonaService.getEmployeeByNameOrCi(campos.campo).subscribe(
+            (empleados:Employee[])=>{
+              this.EmployeesList=Object.keys(empleados).map((key: any) => empleados[key])
+           }
+         );
         }
       }
     }
 
-    //   this.PersonaService.getEmployeeByNameOrCi(campo).subscribe(
-    //     (empleados:Employee[])=>{
-    //       this.EmployeesList=Object.keys(empleados).map((key: any) => empleados[key])
-    //    }
-    //  );
+      
     console.log(campos)
     
   }

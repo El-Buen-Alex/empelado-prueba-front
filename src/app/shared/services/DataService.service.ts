@@ -1,8 +1,9 @@
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
 import { Employee } from "../interfaces/Employee.inertafce";
 import { Provincia } from "../interfaces/Provincia.interface";
 import { Canton } from "../interfaces/Canton.interface";
+import { ObjectBusqueda } from "../interfaces/ObjectBusqueda.interface";
 @Injectable()
 
 export class DataService {
@@ -38,7 +39,17 @@ export class DataService {
     getEmployeeByNameOrCi(campo:string){
         return this.httpClient.get<Employee[]>(this.ruta_server+'/getEmployeeByNameOrCi/'+campo)
     }
-    getEmployeeByNameOrCiAndProvincia(campo:string, provincia:string){
-        return this.httpClient.get(this.ruta_server+'/getEmployeeByNameOrCiAndProvincia/'+campo)
+    getEmployeeByNameOrCiAndProvincia(campos:ObjectBusqueda){
+        return this.httpClient.get<Employee[]>(this.ruta_server+'/getEmployeeByNameOrCiAndProvincia/'+campos.campo+'/'+campos.provincia_id)
+    }
+    getEmployeeByNameOrCiAndCanton(campos:ObjectBusqueda){
+        return this.httpClient.get<Employee[]>(this.ruta_server+'/getEmployeeByNameOrCiAndCanton/'+campos.campo+'/'+campos.canton_id)
+
+    }
+    getEmployeeByCanton_id(campos:ObjectBusqueda){
+        return this.httpClient.get<Employee[]>(this.ruta_server+'/getEmployeeByCantonId/'+campos.canton_id)
+    }
+    getEmployeeByProvincia_id(campos:ObjectBusqueda){
+        return this.httpClient.get<Employee[]>(this.ruta_server+'/getEmployeeByProvincia/'+campos.provincia_id)
     }
 }

@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { DataService } from "./DataService.service";
 import { Employee } from "../interfaces/Employee.inertafce";
 import { BehaviorSubject } from "rxjs";
+import { ObjectBusqueda } from "../interfaces/ObjectBusqueda.interface";
 
 @Injectable()
 
@@ -31,5 +32,18 @@ export class PersonaService{
     }
     getEmployeeByNameOrCi(campo:string){
         return this.DataService.getEmployeeByNameOrCi(campo)
+    }
+    getEmployeeByNameOrCiAndCanton(campos:ObjectBusqueda){
+        return this.DataService.getEmployeeByNameOrCiAndCanton(campos)
+    }
+    getEmployeeByNameOrCiAndProvincia(campos:ObjectBusqueda){
+        return this.DataService.getEmployeeByNameOrCiAndProvincia(campos)
+
+    }
+    getEmployeeByProvincia_id(campos:ObjectBusqueda){
+        return this.DataService.getEmployeeByProvincia_id(campos)
+    }
+    getEmployeeByCanton_id(campos:ObjectBusqueda){
+        return this.DataService.getEmployeeByCanton_id(campos)
     }
 }
